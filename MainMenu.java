@@ -3,18 +3,23 @@ package phoneDirectory;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 
 public class MainMenu  {
 
     public static void main(String[] args) {
 
         MainMenu menu = new MainMenu();
-        menu.infoMenu();
+        Serialization ser = new Serialization();
+
+        ser.Deserialization();
+        menu.InfoMenu();
     }
 
-    public void infoMenu() {
-        CreateContact2 cr = new CreateContact2();
-        cr.check();
+    public void InfoMenu() {
+
+        ManagerContact menu = new ManagerContact();
+
         System.out.println("*******************************************");
         System.out.println("////////    ГЛАВНОЕ МЕНЮ    ///////////////");
         System.out.println("*******************************************");
@@ -28,18 +33,17 @@ public class MainMenu  {
         System.out.println("8.  УДАЛИТЬ ГРУППУ");
         System.out.println("9.  УДАЛИТЬ ВСЕ ГРУППЫ");
         System.out.println("10. УДАЛИТЬ ВСЕ КОНТАКТЫ ");
-        System.out.println(" ");
+        System.out.println();
         System.out.println("0. ВЫХОД ИЗ ПРОГРАММЫ");
         System.out.println("*******************************************");
 
-        selectionMenu();
+        SelectionMenu();
     }
 
-    public void selectionMenu(){
+    public void SelectionMenu(){
 
-        CreateContact2 cr = new CreateContact2();
-        Serializator ser = new Serializator();
-        EditContacts ec = new EditContacts();
+        ManagerContact menu = new ManagerContact();
+        Serialization ser = new Serialization();
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
@@ -49,42 +53,54 @@ public class MainMenu  {
                 System.out.println("*******************************************");
                 switch (num) {
                     case ("1"): // Вывод на экран и поиск контактов
-                        ser.printAllContacts();
+                        menu.PrintAllContacts();
                         break;
                     case ("2"):// Создать контакт
-                        cr.AllName();
-                        cr.NumberMob();
-                        cr.skipNumberHome();
-                        cr.Email();
-                        cr.Group();
-                        cr.Save();
-                        infoMenu();
+                        menu.AllName();
+                        menu.NumberMob();
+                        menu.SkipNumberHome();
+                        menu.Email();
+                        menu.Group();
+                        menu.SaveContact();
                         break;
                     case ("3"):// Редактирование контакта
-                        ec.EditMenu();
+                        menu.EditContact();
                         break;
                     case ("4")://Удалить контакт
-                        cr.RemoveContact();
+                        menu.DeleteContact();
                         break;
                     case ("5"):
+                        menu.PrintAllGroup();
+                        break;
                     case ("6"):
+                        menu.CreateGroup();
+                        break;
                     case ("7"):
+                        menu.EditGroup();
+                        break;
                     case ("8"):
+                        menu.DeleteGroup();
+                        break;
                     case ("9"):
+                        menu.DeleteAllGroup();
+                        break;
                     case ("10"):
-                        cr.DeleteAll();
+                        menu.DeleteAllContact();
                         break;
                     case ("0"):// Выход из программы с сохранением данных в файл
-                        Serializator seriz = new Serializator();
-                        seriz.serialization();
+                        ser.Serialization();
                         System.out.println("УСПЕШНЫЙ ВЫХОД ИЗ ПРОГРАММЫ");
                         System.exit(0);
                     default:
-                        selectionMenu();
+                        SelectionMenu();
                         break;
                 }
+
+                InfoMenu();
+
             } catch (IOException e) {
-                System.out.println("Ошибка" + e);
+                System.err.println("Ошибка ввода");
+                e.printStackTrace();
         }
     }
 }
