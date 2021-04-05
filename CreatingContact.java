@@ -23,7 +23,7 @@ public class CreatingContact implements Serializable {
         } catch (IOException e) { // ошибка ввода-вывода данных
             System.err.print("Ошибка ввода данных");
             e.printStackTrace();
-            // throw new ClientExeption("Ошибка при вводе" , e);
+            // throw new ClientException("Ошибка при вводе" , e);
         }
 
         System.out.print("Введите фамилию: ");

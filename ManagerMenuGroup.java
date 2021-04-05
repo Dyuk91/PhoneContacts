@@ -14,7 +14,7 @@ public class ManagerMenuGroup {
             menu.InfoMenu();
         }
 
-        System.out.println("Список групп");
+        System.out.println("//////   Список групп   //////");
         for (String group : CreatingContact.getListGroup()) {
             System.out.println(group);
         }
@@ -32,31 +32,29 @@ public class ManagerMenuGroup {
 
             String click = SG.readLine();
 
-            switch (click){
+            switch (click) {
                 case ("1"):
-                    for (String str : CreatingContact.getListGroup()) {
-                        System.out.println(str);
-                    }
                     System.out.print("Чтобы просмореть данные группы введите ее название: ");
                     String searchGr = SG.readLine();
 
-                    for (Contacts con : CreatingContact.getLIST()) {
-                        if (searchGr.equals(con.getGroups())) {
-                            System.out.println(con);
+                    for (String str : CreatingContact.getListGroup()) {
+                        if (str.equals(searchGr)) {
+                            for (Contacts con : CreatingContact.getLIST()) {
+                                if (searchGr.equals(con.getGroups())) {
+                                    System.out.println(con);
+                                    menu.InfoMenu();
+                                }
+                            }
                         }
-                        SearchGroup();
-                        break;
                     }
-
-                    System.out.println("Группа не найдена");
-                    SearchGroup();
-                    menu.InfoMenu();
                     break;
-
                 default:
                     menu.InfoMenu();
                     break;
             }
+            System.out.println("Группы с таким именем нет. Повторите ввод");
+            SearchGroup();
+
         } catch (IOException e) {
             System.err.println("Ошибка ввода");
             e.printStackTrace();
@@ -71,13 +69,13 @@ public class ManagerMenuGroup {
             menu.InfoMenu();
         }
 
-        System.out.println("Список групп");
+        System.out.println("//////   Список групп   //////");
         for (String str : CreatingContact.getListGroup()) {
             System.out.println(str);
         }
 
 
-        System.out.print("Редактировать группу нажмите 1. Выйти в ГЛАВНОЕ МЕНЮ нажмите любую кнопку: ");
+        System.out.print("Создать группу нажмите 1. Выйти в ГЛАВНОЕ МЕНЮ нажмите любую кнопку: ");
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
@@ -87,11 +85,20 @@ public class ManagerMenuGroup {
             String num = reader.readLine();
             switch (num) {
                 case ("1"):
-                    System.out.println("Введите имя создаваемой группы: ");
+                    System.out.print("Введите имя создаваемой группы: ");
                     String nameGroup = reader.readLine();
-                    CreatingContact.getListGroup().add(nameGroup);
-                    System.out.println("Группа " + nameGroup + " создана");
-                    mainMenu.InfoMenu();
+                    for (String string : CreatingContact.getListGroup()){
+                        if (nameGroup.equals(string)){
+                            System.out.println("Группа с таким именем существует. Введите другое имя");
+                            CreateGroup();
+                        }
+                    }
+
+                    for (String string : CreatingContact.getListGroup()){
+                            CreatingContact.getListGroup().add(nameGroup);
+                            System.out.println("Группа " + nameGroup + " создана");
+                            mainMenu.InfoMenu();
+                        }
                     break;
                 default:
                     mainMenu.InfoMenu();
@@ -112,7 +119,7 @@ public class ManagerMenuGroup {
             menu.InfoMenu();
         }
 
-        System.out.println("Список групп");
+        System.out.println("//////   Список групп   //////");
         for (String str : CreatingContact.getListGroup()){
             System.out.println(str);
         }
@@ -169,7 +176,7 @@ public class ManagerMenuGroup {
             menu.InfoMenu();
         }
 
-        System.out.println("Список групп");
+        System.out.println("//////   Список групп   //////");
         for (String str : CreatingContact.getListGroup()){
             System.out.println(str);
         }
@@ -214,7 +221,7 @@ public class ManagerMenuGroup {
             menu.InfoMenu();
         }
 
-        System.out.println("Список групп");
+        System.out.println("//////   Список групп   //////");
         for (String str : CreatingContact.getListGroup()){
             System.out.println(str);
         }
