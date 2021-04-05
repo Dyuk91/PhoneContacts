@@ -100,8 +100,7 @@ public class MainMenu  {
                 InfoMenu();
 
             } catch (IOException e) {
-                System.err.println("Ошибка ввода");
-                e.printStackTrace();
+                throw new ClientException("Ошибка при вводе" , e);
         }
     }
 }

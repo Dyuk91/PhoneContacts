@@ -56,8 +56,7 @@ public class ManagerMenuGroup {
             SearchGroup();
 
         } catch (IOException e) {
-            System.err.println("Ошибка ввода");
-            e.printStackTrace();
+            throw new ClientException("Ошибка при вводе" , e);
         }
     }
 
@@ -106,8 +105,7 @@ public class ManagerMenuGroup {
             }
 
         } catch(IOException e){
-            System.err.println("Ошибка ввода");
-            e.printStackTrace();
+            throw new ClientException("Ошибка при вводе" , e);
         }
     }
 
@@ -162,8 +160,7 @@ public class ManagerMenuGroup {
                     break;
             }
         } catch (IOException e) {
-            System.err.println("Ошибка ввода");
-            e.printStackTrace();
+            throw new ClientException("Ошибка при вводе" , e);
         }
 
     }
@@ -208,8 +205,7 @@ public class ManagerMenuGroup {
                     break;
             }
         } catch (IOException e) {
-            System.err.println("Ошибка ввода");
-            e.printStackTrace();
+            throw new ClientException("Ошибка при вводе" , e);
         }
     }
 
@@ -251,8 +247,7 @@ public class ManagerMenuGroup {
                     break;
             }
         } catch (IOException e) {
-            System.err.println("Ошибка ввода");
-            e.printStackTrace();
+            throw new ClientException("Ошибка при вводе" , e);
         }
     }
 }

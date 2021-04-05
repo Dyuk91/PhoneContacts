@@ -21,9 +21,7 @@ public class CreatingContact implements Serializable {
         try {
             name = reader.readLine();
         } catch (IOException e) { // ошибка ввода-вывода данных
-            System.err.print("Ошибка ввода данных");
-            e.printStackTrace();
-            // throw new ClientException("Ошибка при вводе" , e);
+            throw new ClientException("Ошибка при вводе" , e);
         }
 
         System.out.print("Введите фамилию: ");
@@ -31,8 +29,7 @@ public class CreatingContact implements Serializable {
         try {
             lastname = reader.readLine();
         } catch (IOException e) {
-            System.err.print("Ошибка ввода данных");
-            e.printStackTrace();
+            throw new ClientException("Ошибка при вводе" , e);
         }
 
         System.out.print("Введите отчество: ");
@@ -40,8 +37,7 @@ public class CreatingContact implements Serializable {
         try {
             patronymic = reader.readLine();
         } catch (IOException e) {
-            System.err.print("Ошибка ввода данных");
-            e.printStackTrace();
+            throw new ClientException("Ошибка при вводе" , e);
         }
 
         if (!LIST.isEmpty()) {
@@ -52,7 +48,7 @@ public class CreatingContact implements Serializable {
                     try {
                         a = reader.readLine().trim();
                     } catch (IOException e) {
-                        System.out.print("Ошибка данных");
+                        throw new ClientException("Ошибка при вводе" , e);
                     }
                     switch (a) {
                         case "1":
@@ -87,11 +83,11 @@ public class CreatingContact implements Serializable {
                 NumberMob();
             }
         } catch (NumberFormatException e) {
-            System.out.println("Введите номер цифрами");
-            NumberMob();
+            throw new ClientException("Неверный формат ввода", e);
+//            System.out.println("Введите номер цифрами");
+//            NumberMob();
         }catch (IOException e) {
-            System.err.print("Ошибка ввода данных");
-            e.printStackTrace();
+            throw new ClientException("Ошибка при вводе" , e);
         }
 
         for (Contacts contact : LIST) {
@@ -122,8 +118,7 @@ public class CreatingContact implements Serializable {
         } catch (NumberFormatException e) {
             Age();
         } catch (IOException e) {
-            System.err.print("Ошибка ввода данных");
-            e.printStackTrace();
+            throw new ClientException("Ошибка при вводе" , e);
         }
     }
 
@@ -151,11 +146,9 @@ public class CreatingContact implements Serializable {
             con.setNumberHome(numberHome);
 
         } catch (NumberFormatException e) {
-            System.out.println("Ошибка ввода. Введидите номер числами");
-            NumberHome();
+            throw new ClientException("Неверный формат ввода" , e);
         } catch (IOException e) {
-            System.err.print("Ошибка ввода данных");
-            e.printStackTrace();
+            throw new ClientException("Ошибка при вводе" , e);
         }
     }
 
@@ -173,11 +166,10 @@ public class CreatingContact implements Serializable {
                 Age();
             }
         } catch (NumberFormatException e) {
-            System.out.println("Ошибка ввода. Введидите номер числами");
+            System.err.println("Ошибка ввода. Введидите номер числами");
             Age();
         }catch (IOException e) {
-            System.err.print("Ошибка ввода данных");
-            e.printStackTrace();
+            throw new ClientException("Ошибка при вводе" , e);
         }
     }
 
@@ -194,8 +186,7 @@ public class CreatingContact implements Serializable {
             }
             con.setEmail(email);
         } catch (IOException e) {
-            System.err.print("Ошибка ввода данных");
-            e.printStackTrace();
+            throw new ClientException("Ошибка при вводе" , e);
         }
     }
 
@@ -239,8 +230,7 @@ public class CreatingContact implements Serializable {
                     break;
             }
         } catch (IOException e) {
-            System.err.print("Ошибка ввода данных");
-            e.printStackTrace();
+            throw new ClientException("Ошибка при вводе" , e);
         }
     }
 
@@ -249,7 +239,7 @@ public class CreatingContact implements Serializable {
         System.out.println(con);
         System.out.println("Контакт успешно сохранен");
 
-        boolean add = LIST.add(con);
+        LIST.add(con);
 
         con = new Contacts();
     }

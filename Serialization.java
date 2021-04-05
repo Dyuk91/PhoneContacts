@@ -17,8 +17,7 @@ public class Serialization {
             System.err.println("Файл не найден");
             e.printStackTrace();
         } catch (IOException e) {
-            System.err.println("Ошибка");
-            e.printStackTrace();
+            throw new ClientException("Ошибка при вводе" , e);
         }
     }
 
@@ -36,8 +35,7 @@ public class Serialization {
 //            System.err.println("Ошибка");
 //            e.printStackTrace();
         } catch (IOException e) {
-            System.err.println("Ошибка");
-            e.printStackTrace();
+            throw new ClientException("Ошибка при вводе" , e);
         }
     }
 }

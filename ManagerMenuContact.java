@@ -51,8 +51,7 @@ public class ManagerMenuContact {
                     break;
             }
         } catch (IOException e) {
-            System.err.println("Ошибка ввода");
-            e.printStackTrace();
+            throw new ClientException("Ошибка при вводе" , e);
         }
     }
 
@@ -101,8 +100,7 @@ public class ManagerMenuContact {
                 }
             }
         } catch (IOException e) {
-            System.err.println("Ошибка ввода");
-            e.printStackTrace();
+            throw new ClientException("Ошибка при вводе" , e);
         }
     }
 
@@ -140,8 +138,7 @@ public class ManagerMenuContact {
             menu.InfoMenu();
 
         } catch (IOException e) {
-            System.err.println("Ошибка ввода");
-            e.printStackTrace();
+            throw new ClientException("Ошибка при вводе" , e);
         }
     }
 
@@ -170,8 +167,7 @@ public class ManagerMenuContact {
                 menu.InfoMenu();
             }
         } catch (IOException e) {
-            System.err.println("Ошибка ввода");
-            e.printStackTrace();
+            throw new ClientException("Ошибка при вводе" , e);
         }
     }
 }
