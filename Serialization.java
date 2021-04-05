@@ -1,21 +1,18 @@
 package phoneDirectory;
 
+import java.util.Collection;
 import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Serialization {
-
-    private static List<Contacts> LIST = ManagerContact.getLIST();
-    private static List <String> ListGroup = ManagerContact.getListGroup();
 
     public void Serialization() {
 
         try (ObjectOutputStream oos1 = new ObjectOutputStream(new FileOutputStream("Contacts")); ObjectOutputStream oos2 = new ObjectOutputStream(new FileOutputStream("Group"))) { // Метод try-with-resources. Метод close() работает по умолчанию.
 
-            oos1.writeObject(LIST);
+            oos1.writeObject(CreatingContact.getLIST());
 
-            oos2.writeObject(ListGroup);
+            oos2.writeObject(CreatingContact.getListGroup());
 
         } catch (FileNotFoundException e) {
             System.err.println("Файл не найден");
@@ -30,9 +27,8 @@ public class Serialization {
 
         try (ObjectInputStream ois1 = new ObjectInputStream(new FileInputStream("Contacts")); ObjectInputStream ois2 = new ObjectInputStream(new FileInputStream("Group"))) {
 
-            LIST = (List) ois1.readObject();
-
-            ListGroup = (List) ois2.readObject();
+            CreatingContact.setLIST((List) ois1.readObject());
+            CreatingContact.setListGroup((List) ois2.readObject());
 
         } catch (ClassNotFoundException e) {
             System.err.println("Ошибка");

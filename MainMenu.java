@@ -3,7 +3,6 @@ package phoneDirectory;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.Serializable;
 
 public class MainMenu  {
 
@@ -18,7 +17,7 @@ public class MainMenu  {
 
     public void InfoMenu() {
 
-        ManagerContact menu = new ManagerContact();
+        CreatingContact menu = new CreatingContact();
 
         System.out.println("*******************************************");
         System.out.println("////////    ГЛАВНОЕ МЕНЮ    ///////////////");
@@ -42,8 +41,10 @@ public class MainMenu  {
 
     public void SelectionMenu(){
 
-        ManagerContact menu = new ManagerContact();
+        CreatingContact menu = new CreatingContact();
         Serialization ser = new Serialization();
+        ManagerMenuContact mmc = new ManagerMenuContact();
+        ManagerMenuGroup mmg = new ManagerMenuGroup();
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
@@ -53,7 +54,7 @@ public class MainMenu  {
                 System.out.println("*******************************************");
                 switch (num) {
                     case ("1"): // Вывод на экран и поиск контактов
-                        menu.PrintAllContacts();
+                        mmc.PrintAllContacts();
                         break;
                     case ("2"):// Создать контакт
                         menu.AllName();
@@ -64,28 +65,28 @@ public class MainMenu  {
                         menu.SaveContact();
                         break;
                     case ("3"):// Редактирование контакта
-                        menu.EditContact();
+                        mmc.EditContact();
                         break;
                     case ("4")://Удалить контакт
-                        menu.DeleteContact();
+                        mmc.DeleteContact();
                         break;
                     case ("5"):
-                        menu.PrintAllGroup();
+                        mmg.PrintAllGroup();
                         break;
                     case ("6"):
-                        menu.CreateGroup();
+                        mmg.CreateGroup();
                         break;
                     case ("7"):
-                        menu.EditGroup();
+                        mmg.EditGroup();
                         break;
                     case ("8"):
-                        menu.DeleteGroup();
+                        mmg.DeleteGroup();
                         break;
                     case ("9"):
-                        menu.DeleteAllGroup();
+                        mmg.DeleteAllGroup();
                         break;
                     case ("10"):
-                        menu.DeleteAllContact();
+                        mmc.DeleteAllContact();
                         break;
                     case ("0"):// Выход из программы с сохранением данных в файл
                         ser.Serialization();
